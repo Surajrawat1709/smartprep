@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: EdTech
+  datasource:
+    url: jdbc:mysql://localhost:3306/edtech
+    username: root
+    password: Suraj
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  port: 9876
+
+jwt:
+  # Use a 256-bit (or longer) secret for HS256. Override with environment variable JWT_SECRET in prod.
+  secret: ${JWT_SECRET:7f04c2a8a6f64d85b1d8a9f92b6c9c3f2e7f9d1a0c3b5e7f9a1b2c3d4e5f6078}
+  expiration: 86400000
+
+tesseract:
+  data:
+    path: "C:/Program Files/Tesseract-OCR/tessdata"
+  language: eng
+
+llm:
+  api:
+    url: "https://openrouter.ai/api/v1/chat/completions"
+    # Using OpenRouter API key
+    key: ${OPENAI_API_KEY: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}
+    model: "openai/gpt-3.5-turbo"
+    # Alternative: Use Ollama local server (uncomment to use)
+    # url: "http://localhost:11434/api/chat"
+    # Alternative: Use Google Gemini (uncomment and set GEMINI_API_KEY to use)
+    # url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
+    # key: ${GEMINI_API_KEY:your-gemini-api-key-here}
